@@ -1,0 +1,24 @@
+<?php include './../../include/navbar.html'; ?>
+<?php include 'CRUD/read.php'; ?>
+<?php if(!$usersEnabled){header("Location: ./../../index.html");}?>
+
+
+    <div class='container-fluid'>
+        <div class="row p-3">
+            <h1>Ver Usuarie</h1>
+        </div>
+        <div class="row p-3">
+            <div class="col">
+                <div class="container shadow-lg rounded m-auto p-5">
+                        <!-- Aquí debe aparecer toda la información relevante del usuario -->
+			
+												<!-- En creatr.php se genera la variable userHTML como un string que contiene los datos del usuarix segun el id -->
+	
+												<?php echo $userHTML ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

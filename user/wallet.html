@@ -1,0 +1,35 @@
+<?php include '../include/navbar.html'; ?>
+<?php include 'wallet.php';?>
+<?php if(!$walletEnabled){header("Location: ./../index.html");}?>
+
+    <div class='container-fluid'>
+        <div class="row p-3">
+            <h1>Mi Billetera</h1>
+        </div>
+        <div class="row p-3">
+            <div class="col">
+                <div class="container shadow-lg rounded m-auto p-5">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Código</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Valor Actual</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Debería haber una de estas por cada moneda que tenga el usuario -->
+														<!-- En wallet.php se genera la variable tableHTML como un string que contiene los datos obtenidos directamente de la consulta sql necesaria en 'formato' de filas de tabla HTML -->
+
+														<?php echo $tableHTML ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
