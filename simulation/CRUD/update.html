@@ -1,0 +1,89 @@
+<?php include './../../include/navbar.html'; ?>
+<?php include 'vars.php'; ?>
+<?php include 'tableVars.php'; ?>
+
+<?php	$url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$url_components = parse_url($url);
+		parse_str($url_components['query'], $params);
+		$id = $params['id'];
+		$tableName = $params['tableName'];
+?>
+
+
+    <div class='container-fluid'>
+        <div class="row p-3">
+            <h1>Editar <?php echo $tableTitle[$tableName]; ?></h1>
+        </div>
+        <div class="row p-3">
+            <div class="col">
+                <div class="container shadow-lg rounded m-auto p-5">
+                    <!-- El formulario debe aparecer llenado con los valores actuales de los parámetros -->
+                    <form action="/simulation/CRUD/update.php">
+
+
+												<input type="hidden" name="tableName" value="<?php echo $tableName;?>">
+												<input type="hidden" name="id" value="<?php echo $id;?>">
+
+											<?php
+												$formHTML = "";
+												foreach($fields[$tableName] as $key => $value) {?>
+											<?php
+													if($value == "id" or $value == "createdAt"){
+														 continue;
+													}
+													if(array_key_exists($value, $fieldType)){
+														$inputType = $fieldType[$value];
+													}
+													else{
+														$inputType = "text";
+													}
+													if($value != "countryId"){
+														$formHTML .= 
+                        			"<div class='form-group'>
+                        			    <label for='" .$value."'>".$fieldsNames[$tableName][$key]."</label>
+                        			    <input type='".$inputType."' class='form-control' required name='".$value."'>
+                        			</div>";
+													}
+													else{
+														$formHTML .= "
+                       			  <div class='form-group'>
+                       			     <label for='country'>País</label>
+                       			     <select class='form-control' name='countryId'>";
+														$ch = curl_init();
+														$url = 'http://127.0.0.1:5000/api/countries';
+														curl_setopt($ch, CURLOPT_URL, $url);
+														curl_setopt($ch, CURLOPT_HEADER, false);
+														curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+													
+														curl_setopt($ch, CURLOPT_HTTPGET);
+														$content = curl_exec($ch);
+														$countries = json_decode($content, true)['countries'];
+
+														curl_close($ch);
+														foreach($countries as $country){
+															$formHTML .= "<option value='".$country["id"]."'>".
+																						$country["countryName"]."</option>";
+														}
+														$formHTML .= "</select> </div>";
+
+													}
+						
+												}
+												echo $formHTML;
+
+										
+											?>
+
+                        <div class='d-flex justify-content-end'>
+                            <a class="btn btn-secondary mx-3" href=<?php echo "/simulation/CRUD/all.html?tableName=".$tableName; ?>>Volver</a>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

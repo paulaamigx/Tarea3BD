@@ -1,0 +1,89 @@
+<?php include '../../include/navbar.html'; ?>
+<?php include 'tableVars.php' ?>
+
+<?php
+	### Select Table ###
+	$url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	$url_components = parse_url($url);
+	  
+	parse_str($url_components['query'], $params);
+	      
+	$tableName = $params['tableName'];
+?>
+<?php
+	######  GET	#######
+
+	$ch = curl_init();
+	$url = 'http://127.0.0.1:5000/api/'.$tableName;
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_HEADER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+	curl_setopt($ch, CURLOPT_HTTPGET);
+	$content = curl_exec($ch);
+	$item = json_decode($content, true);
+	
+	$tableHTML = "<table class='table'>	<tr>";
+	foreach($tablesFieldsNames[$tableName] as $field){
+		$tableHTML .= "<th>".$field."</th>";
+	}
+	$tableHTML .= "</tr>";
+
+
+	foreach($item[$tableName] as $field){
+		$tableHTML .= "<tr>";
+		foreach($tablesFields[$tableName] as $fieldId){
+			$tableHTML .= "<td>".$field[$fieldId]."</td>";
+			
+		}
+		if($tableName == "userCurrencies"){
+			$idParam = "id=".$field['userId']."/".$field['currencyId'];
+		}
+		else if($tableName == "currencyValues"){
+			$idParam = "id=".$field['currencyId']."/".$field['createdAt'];
+		}
+		else{
+			$idParam = "id=".$field['id'];
+		}
+		$tableHTML .= 
+									"<td>
+												<a href='/simulation/CRUD/read.html?".$idParam."&tableName=".$tableName."' 
+													class='btn btn-primary'>Ver 
+													<i class='fas fa-search'></i></a>
+      						  		<a href='/simulation/CRUD/update.html?".$idParam."&tableName=".$tableName."' 
+													class='btn btn-warning'>Editar 
+													<i class='fas fa-edit'></i></a>
+      						  		<a href='/simulation/CRUD/delete.php?".$idParam."&tableName=".$tableName."' 
+													 class='btn btn-danger'>Borrar 
+													 <i class='fas fa-trash-alt'></i></a>
+    								</td>";
+
+														"</tr>";
+
+
+
+	}
+	$tableHTML = $tableHTML."</table>";
+	curl_close($ch);
+
+?>
+<div class='container-fluid'>
+    <div class="row p-3">
+        <h1>Administración de <?php echo $tableTitle[$tableName]?></h1>
+    </div>
+    <div class="row p-3">
+        <div class="col">
+            <!-- Mostrar aquí los datos de cada usuario -->
+            <div class="container shadow-lg rounded m-auto p-5">
+								<?php echo $tableHTML ?>
+                <a href=<?php echo "/simulation/CRUD/create.html?tableName=".$tableName?> class="btn btn-success">Nuevo <i class="fas fa-plus"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
+
+
+

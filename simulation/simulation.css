@@ -1,0 +1,11 @@
+#tablesWrapper{
+	margin: 5vw;
+	padding: 2vw;
+}
+
+.tableBtn{
+	background-color: yellow;
+	margin: 1vw;
+	padding: 1vw;
+	border-radius: 3px;
+}

@@ -1,0 +1,24 @@
+<?php include './../../include/navbar.html'; ?>
+<?php include './read.php'; ?>
+
+
+    <div class='container-fluid'>
+        <div class="row p-3">
+            <h1>Ver <?php echo  $tableTitle[$tableName]; ?></h1>
+        </div>
+        <div class="row p-3">
+            <div class="col">
+                <div class="container shadow-lg rounded m-auto p-5">
+                        <!-- Aquí debe aparecer toda la información relevante del usuario -->
+			
+												<!-- En creatr.php se genera la variable userHTML como un string que contiene los datos del usuarix segun el id -->
+	
+												<?php echo $itemHTML ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
