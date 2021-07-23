@@ -10,12 +10,12 @@
 	
 									);
 	$tablesFields =  array(
-										"users" 					=> 	array("id", "username","surname","email"),
-										"countries"				=> 	array("id", "countryName"),
-										"accounts"				=> 	array("id", "userId", "balance"),
-										"userCurrencies"	=>	array("userId", "currencyId", "balance"),
-										"currencyValues"	=>	array("currencyId",  "value", "createdAt"),
-										"currencies"				=>	array("sigla", "name")
+										"users" 					=> 	array("id", "nombre","apellido","correo"),
+										"countries"				=> 	array("id", "nombre"),
+										"accounts"				=> 	array("id", "id_usuario", "balance"),
+										"userCurrencies"	=>	array("id_usuario", "id_moneda", "balance"),
+										"currencyValues"	=>	array("id_moneda",  "valor", "fecha"),
+										"currencies"				=>	array("sigla", "nombre")
 
 									);
 	$tableTitle = array(
@@ -24,7 +24,7 @@
 									"accounts"				=> "Cuenta Bancaria",
 									"userCurrencies"	=> "Usuarix/Moneda",
 									"currencyValues"	=> "Precio Moneda",
-									"currencies"				=> "Moneda"
+									"currencies"			=> "Moneda"
 								);
 
 ?>

@@ -28,7 +28,7 @@
 												$formHTML = "";
 												foreach($fields[$tableName] as $key => $value) {?>
 											<?php
-													if($value == "id" or $value == "createdAt"){
+													if($value == "id" or $value == "fecha" or $value == "fecha_registro"){
 														 continue;
 													}
 													if(array_key_exists($value, $fieldType)){
@@ -37,7 +37,7 @@
 													else{
 														$inputType = "text";
 													}
-													if($value != "countryId"){
+													if($value != "pais"){
 														$formHTML .= 
                         			"<div class='form-group'>
                         			    <label for='" .$value."'>".$fieldsNames[$tableName][$key]."</label>
@@ -48,7 +48,7 @@
 														$formHTML .= "
                        			  <div class='form-group'>
                        			     <label for='country'>País</label>
-                       			     <select class='form-control' name='countryId'>";
+                       			     <select class='form-control' name='pais'>";
 														$ch = curl_init();
 														$url = 'http://127.0.0.1:5000/api/countries';
 														curl_setopt($ch, CURLOPT_URL, $url);
@@ -62,7 +62,7 @@
 														curl_close($ch);
 														foreach($countries as $country){
 															$formHTML .= "<option value='".$country["id"]."'>".
-																						$country["countryName"]."</option>";
+																						$country["nombre"]."</option>";
 														}
 														$formHTML .= "</select> </div>";
 

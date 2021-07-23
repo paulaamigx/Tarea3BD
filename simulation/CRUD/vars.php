@@ -1,12 +1,12 @@
 <?php
 	$fields = array(
-									"users"						=> 	array( "username", "surname", "email",
-																				 			"password", "countryId", "id", "createdAt"),
-									"countries" 			=> 	array("countryName", "id"),
-									"accounts"				=>	array("id", "userId", "balance"),
-									"userCurrencies"	=>	array("currencyId", "userId", "balance"),
-									"currencyValues"	=>	array("currencyId",  "value", "createdAt"),
-									"currencies"				=>  array("id", "sigla", "name")
+									"users"						=> 	array( "nombre", "apellido", "correo",
+																				 			"contrasena", "pais", "id", "fecha_registro"),
+									"countries" 			=> 	array("nombre", "id"),
+									"accounts"				=>	array("id", "id_usuario", "balance"),
+									"userCurrencies"	=>	array("id_usuario", "id_moneda", "balance"),
+									"currencyValues"	=>	array("id_moneda",  "valor", "fecha"),
+									"currencies"				=>  array("id", "sigla", "nombre")
 						);
 	$fieldsNames = array(
 									"users"						=> 	array("Nombre", "Apellido", "Correo Elecrtónico", 
@@ -20,12 +20,12 @@
 						);
 	#default: text
 	$fieldType = array(
-									"email"				=>	"email",
-									"password"		=>	"password",
+									"correo"			=>	"email",
+									"contrasena"	=>	"password",
 									"balance"			=>  "number",
-									"userId"			=>  "number",
-									"currencyId"	=>  "number",
-									"value"				=> 	"number"
+									"id_usuario"	=>  "number",
+									"id_moneda	"	=>  "number",
+									"valor"				=> 	"number"
 						);
 
 ?>
