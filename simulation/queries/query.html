@@ -1,0 +1,18 @@
+<?php include '../../include/navbar.html'; ?>
+<?php include './vars.php'; ?>
+<?php	$url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$url_components = parse_url($url);
+		parse_str($url_components['query'], $params);
+		$queryName= $params['query'];
+?>
+
+	<div id="queries">
+		<h2> <?php echo $queryFullName[$queryName]?> </h2>
+    <form action="/simulation/queries/query.php">
+			<input type="hidden" name="queryId" value="<?php echo $queryId[$queryName];?>">
+
+			<input type="text" name="param">
+      <button type="submit" class="btn btn-primary">Consultar</button>
+
+		</form>
+	</div>

@@ -1,10 +1,20 @@
 /* Si quieren utilizar CSS personalizado para la tarea, utilicen este archivo */
-#tablesWrapper{
-	margin: 5vw;
+#tablesWrapper, #queriesWrapper{
+	position: absolute;
+	margin: 2vw;
 	padding: 2vw;
+	top: 1vw;
+	width: 42vw;
+}
+#tablesWrapper{
+	left: 0vw;
+}
+#queriesWrapper{
+	left: 50vw;
 }
 
-.tableBtn{
+
+.tableBtn, .queryBtn{
 	background-color: yellow;
 	margin: 1vw;
 	padding: 1vw;
@@ -14,3 +24,11 @@
 	cursor: pointer;
 }
 
+.queryBtn{
+	background-color: green;
+	width: 30vw;
+}
+
+#queries{
+	margin: 5vw;
+}
